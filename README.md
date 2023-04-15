@@ -1,5 +1,5 @@
 # dm566_tools
 
 - [x] Bayes optimal classifier
-- [ ] Naive Bayes classifier
-- [ ] Precision-recall 
+- [x] Naive Bayes classifier
+- [x] Precision-recall 
