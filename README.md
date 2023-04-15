@@ -1,2 +1,5 @@
 # dm566_tools
-EZ 02 til data svin MCQ
+
+- [x] Bayes optimal classifier
+- [ ] Naive Bayes classifier
+- [ ] Precision-recall 
