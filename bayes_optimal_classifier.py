@@ -1,25 +1,28 @@
-import numpy as np
+# Modify these
+props = [0.4, 0.2, 0.4]
 
-# probabilities of classifiers given the training data
-p_h = np.array([0.6, 0.3, 0.1])
+# Modify these
+o1 = [0.5, 0.6, 0.3]
+o2 = [0.2, 0.9, 0.7]
+o3 = [0.3, 0.0, 0.4]
 
-# class probabilities for each test instance and classifier
-o_h = np.array([
-    [[0.4, 0.6], [0.7, 0.3], [0.5, 0.5]],
-    [[0.1, 0.9], [0.5, 0.5], [0.8, 0.2]],
-    [[0.0, 1.0], [0.4, 0.6], [0.6, 0.4]],
-    [[0.2, 0.8], [0.7, 0.3], [0.5, 0.5]],
-    [[0.5, 0.5], [0.1, 0.9], [0.2, 0.8]]
-])
+# adjust to how many o's
+sum1 = 0
+sum2 = 0
+sum3 = 0
 
-# combine the classifiers using Bayes optimal classifier
-p_o = np.zeros((5, 2))
-for i in range(5):
-    for j in range(3):
-        p_o[i] += p_h[j] * o_h[i][j]
-        
-# print the results
-for i in range(5):
-    print(f"Class probabilities for test instance O{i+1}:")
-    print("+:", p_o[i][0])
-    print("-:", p_o[i][1])
+# Modify this if more than 3 o's
+for i in range(len(props)):
+    sum1 += props[i] * o1[i]
+    sum2 += props[i] * o2[i]
+    sum3 += props[i] * o3[i]
+
+print("for first class")
+print("o1: ",sum1)
+print("o2: ",sum2)
+print("o3: ",sum3)
+print()
+print("for second class")
+print("o1: ", 1-sum1)
+print("o2: ", 1-sum2)
+print("o3: ", 1-sum3)
