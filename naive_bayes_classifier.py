@@ -35,4 +35,4 @@ queries = [['C', 'D',], ['A', 'D',], ['B', 'F',], ['A', 'F',], ['C', 'G',]]
 for query in queries:
     x1, x2 = query
     p_plus_1, p_minus_1 = naive_bayes_predict(x1, x2)
-    print(f"P(Y=+1 | X1={x1}, X2={x2}) = {p_plus_1:.3f}, P(Y=-1 | X1={x1}, X2={x2}) = {p_minus_1:.3f}")
+    print(f"P(Y=-1 | X1={x1}, X2={x2}) = {p_plus_1:.3f}, P(Y=+1 | X1={x1}, X2={x2}) = {p_minus_1:.3f}")
