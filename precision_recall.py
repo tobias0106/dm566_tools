@@ -1,10 +1,10 @@
 from sklearn.metrics import confusion_matrix, classification_report
 
 # true class of the test objects   
-y_true = ['A', 'A', 'A', 'A', 'A', 'B', 'B', 'B', 'B', 'B']
+y_true = ['A', 'A', 'A', 'A', 'A', 'A', 'B', 'B', 'B', 'B', 'C', 'C', 'C', 'C', 'C']
 
 # predicted class by the classifier
-y_pred = ['A', 'B', 'A', 'A', 'B', 'A', 'B', 'B', 'B', 'B']
+y_pred = ['B', 'A', 'C', 'A', 'B', 'A', 'C', 'B', 'A', 'A', 'C', 'A', 'B', 'B', 'C']
 
 # calculate the confusion matrix
 cm = confusion_matrix(y_true, y_pred)
