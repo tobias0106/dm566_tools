@@ -1,7 +1,7 @@
 import numpy as np
 
 def distance_measure(point, mu):
-    matrix = np.array([[3, 1], [0, 2]])
+    matrix = np.array([[2, 0], [0, 4]])
     diff = point - mu
     result = np.sqrt(np.dot(np.dot(diff, matrix), diff.T))
     return result
@@ -17,8 +17,8 @@ def assign_clusters(points, clusters):
     return assignments, results
 
 # Define the points and cluster means
-points = np.array([(2, 5), (4, 0), (3, 4), (3, 3), (4, 4)])
-clusters = np.array([(0, 2), (4, 7)])
+points = np.array([(0, 2), (4, 0), (np.sqrt(8), 0), (8, 0), (np.sqrt(2), np.sqrt(3)), (1,0), (0,-2)])
+clusters = np.array([(0, 0)])
 
 # Assign points to clusters and get the distance results
 assignments, results = assign_clusters(points, clusters)
@@ -27,4 +27,5 @@ assignments, results = assign_clusters(points, clusters)
 for i, point in enumerate(points):
     print(f"Point {point} is assigned to Cluster {assignments[i]}")
     print(f"Distance: {results[i]}")
+    print("-------------")
 
