@@ -1,5 +1,7 @@
 import numpy as np
 
+
+# Data is from exam 2021 question 13.
 def distance_measure(point, mu):
     matrix = np.array([[2, 0], [0, 4]])
     diff = point - mu
