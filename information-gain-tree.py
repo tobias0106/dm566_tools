@@ -1,41 +1,52 @@
 import pandas as pd
-import numpy as np
+from sklearn.tree import DecisionTreeClassifier
+from sklearn import metrics
+from sklearn.tree import export_graphviz
+import six
+import sys
+sys.modules['sklearn.externals.six'] = six
 
-data = {'X1': ['A', 'A', 'A', 'A', 'A', 'B', 'B', 'B', 'B', 'B'],
-        'X2': ['C', 'C', 'D', 'D', 'C', 'C', 'D', 'C', 'D', 'C'],
-        'X3': ['E', 'F', 'E', 'F', 'F', 'E', 'E', 'E', 'F', 'F'],
-        'Y':  [-1, 1, -1, 1, -1, -1, 1, 1, 1, -1]}
+# Sample data
+data = {
+    'RID': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    'Past Trend': ['Positive', 'Negative', 'Positive', 'Positive', 'Negative', 'Positive', 'Negative', 'Negative', 'Positive', 'Positive'],
+    'Open Interest': ['Low', 'High', 'Low', 'High', 'Low', 'Low', 'High', 'Low', 'Low', 'High'],
+    'Trading Volume': ['High', 'Low', 'High', 'High', 'High', 'Low', 'High', 'High', 'Low', 'High'],
+    'Return': ['Up', 'Down', 'Up', 'Up', 'Down', 'Down', 'Down', 'Down', 'Down', 'Up']
+}
 
+# Create a DataFrame
 df = pd.DataFrame(data)
 
-def entropy(y):
-    p = y.value_counts(normalize=True)
-    return -np.sum(p * np.log2(p))
+# Define the features and their corresponding mapping
+features_mapping = {
+    'Past Trend': {'Positive': 0, 'Negative': 1},
+    'Open Interest': {'Low': 0, 'High': 1},
+    'Trading Volume': {'Low': 0, 'High': 1}
+}
 
-def info_gain(df, root, attribute):
-    root_entropy = entropy(df[root])
-    branch_entropies = df.groupby(attribute).apply(lambda group: entropy(group[root]))
-    branch_weights = df[attribute].value_counts(normalize=True)
-    
-    weighted_entropy = np.sum(branch_weights * branch_entropies)
-    return root_entropy - weighted_entropy
+# Convert categorical variables into numerical values based on the mapping
+for feature, mapping in features_mapping.items():
+    df[feature] = df[feature].map(mapping)
 
-def choose_attribute(df, root, attributes):
-    gains = {attr: info_gain(df, root, attr) for attr in attributes}
-    best_attr = max(gains, key=gains.get)
-    return best_attr, gains[best_attr]
+# Separate features and target variable
+features = ['Past Trend', 'Open Interest', 'Trading Volume']
+X = df[features]
+y = df['Return']
 
+best_info_gain = float('-inf')
+best_feature = None
 
-# Choose the best attribute for each branch of X1
-root = 'Y'
-attributes = ['X2', 'X3']
+# Iterate over features and select the one with the highest Information Gain
+for feature in features:
+    X_feature = X[feature].values.reshape(-1, 1)
+    dt_classifier = DecisionTreeClassifier()
+    dt_classifier.fit(X_feature, y)
+    info_gain = dt_classifier.tree_.compute_feature_importances(normalize=False)[0]
 
-for branch_value in df['X1'].unique():
-    branch_df = df[df['X1'] == branch_value]
+    if info_gain > best_info_gain:
+        best_info_gain = info_gain
+        best_feature = feature
 
-    best_attr, gain = choose_attribute(branch_df, root, attributes)
-
-    print(f"Branch X1 = {branch_value}:")
-    print(f"Best attribute: {best_attr} with information gain: {gain:.5f}")
-    print()
-
+# Output the selected feature and its Information Gain
+print(f"The root feature is '{best_feature}' with an Information Gain of {best_info_gain}")
