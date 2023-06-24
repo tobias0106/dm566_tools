@@ -47,5 +47,5 @@ clusters = k_means(points, initial_means)
 # Print clusters after each iteration
 iteration = 1
 for cluster in clusters:
-    print(f"Iteration {iteration}: {cluster}")
+    print(f"cluster {iteration}: {cluster}")
     iteration += 1
