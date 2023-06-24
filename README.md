@@ -1,5 +1,12 @@
 ⚠️ **Disclaimer: Use of the Tools in this Repository**
 
+ * ----------------------------------------------------------------------------
+ * "THE BEER-WARE LICENSE" (Revision 42):
+ * As long as you retain this notice you,
+ * can do whatever you want with this stuff. If we meet some day, and you think
+ * this stuff is worth it, you us buy me a beer in return.
+ * ----------------------------------------------------------------------------
+
 Please note that the tools provided in this GitHub repository for the DM566 course in Data Mining and Machine Learning are made available for educational purposes only. While every effort has been made to ensure their functionality and accuracy, it is essential to understand and acknowledge the following:
 
 1. **Your Responsibility:** By using these tools, you assume full responsibility for any outcomes or consequences that may arise from their usage. It is your responsibility to exercise caution, validate the results, and use the tools appropriately.
