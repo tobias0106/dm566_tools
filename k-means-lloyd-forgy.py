@@ -44,8 +44,12 @@ initial_means = np.array([[2, 0], [4, 0], [6, 0]])
 # Run k-means algorithm
 clusters = k_means(points, initial_means)
 
+means = update_means(clusters)
+
 # Print clusters after each iteration
 iteration = 1
 for cluster in clusters:
     print(f"cluster {iteration}: {cluster}")
     iteration += 1
+
+print("\nfinal means:", means)
