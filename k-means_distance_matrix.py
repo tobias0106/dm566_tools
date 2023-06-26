@@ -6,6 +6,7 @@ def distance_measure(point, mu):
     matrix = np.array([[2, 0], [0, 4]])
     diff = point - mu
     result = np.sqrt(np.dot(np.dot(diff, matrix), diff.T))
+
     return result
 
 def assign_clusters(points, clusters):

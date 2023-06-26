@@ -1,7 +1,7 @@
 from itertools import combinations as cmbs
 
 # transactions = [[1,2,3], [1,2,4], [1,3,4], [1,3,5], [2,3,4]]
-transactions = [['A','B','F'], ['B','C'], ['A','E','F'], ['B','D','E'],['A','C','E'],['B','C','E','F'], ['A','D','E'], ['A','B','C'],['A','B','C','D','F'], ['C','E','F']]
+transactions = [['A', 'B', 'C', 'E', 'G', 'H', 'I'], ['A', 'B', 'D', 'E', 'F', 'H', 'I'], ['A', 'B', 'D', 'E', 'H'], ['A', 'B', 'E', 'F', 'H'], ['A', 'B', 'E', 'H'], ['A', 'D', 'F', 'G', 'I'], ['A', 'F', 'I'], ['B', 'C', 'D', 'E', 'G', 'I'], ['C', 'G', 'I'], ['D', 'E', 'F', 'G', 'H', 'I'], ['D', 'G', 'I'], ['F']]
 sigma = 3
 
 def findFrequentItemSets(transactions):
